@@ -3,6 +3,22 @@ A Python subnet calculator class using built-in ipaddress module
 
 ## Availlable Methods:
 
+- [x]  def Broadcast(self)
+- [x]  def Cidr(self)
+- [x]  def FirstAddress(self)
+- [x]  def Hosts(self)
+- [x]  def HostAddress(self)
+- [x]  def LastAddress(self)
+- [x]  def Mask(self)
+- [x]  def Netmask(self)
+- [x]  def NetworkAddress(self)
+- [x]  def Range(self)
+- [x]  def Size(self)
+- [x]  def subNetworks(self, newPrefix: int = 0, subnetMask: str=None)
+- [x]  def parentNetwork(self, newPrefix: int = 0, prefixlenDiff: int = 0)
+- [x]  def toString(self)
+- [x]  def Wildcard(self)
+
 ## Usage:
 
 Retrive informations about a given CIDR IP address
