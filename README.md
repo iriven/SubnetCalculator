@@ -1,7 +1,8 @@
 # SubnetCalculator
 A Python subnet calculator using built-in ipaddress module
 
-``python
+```python
+
 Enter IP address in IP/Mask Form : 192.168.0.0/16
 Host Address :  192.168.0.0
 Network Address :  192.168.0.0
@@ -14,4 +15,5 @@ First IP :  192.168.0.1
 Last IP :  192.168.255.254
 Range :  192.168.0.1-192.168.255.254
 Hosts Count :  65534
-``
+
+```
