@@ -1,7 +1,9 @@
 # SubnetCalculator
 A Python subnet calculator class using built-in ipaddress module
 
-## Usage
+## Availlable Methods:
+
+## Usage:
 
 Retrive informations about a given CIDR IP address
 
