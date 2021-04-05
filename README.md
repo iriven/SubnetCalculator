@@ -1,5 +1,21 @@
 # SubnetCalculator
-A Python subnet calculator using built-in ipaddress module
+A Python subnet calculator class using built-in ipaddress module
+
+## Usage
+
+Retrive informations about a given CIDR IP address
+
+``` python
+
+from libraries.ipCalculator import subnetCalculator
+if __name__ == '__main__':
+    IpPrefix = input('Enter IP address in IP/Mask Form : ')
+    net = subnetCalculator(IpPrefix)
+    net.toString()
+    
+```
+
+## Output
 
 ```python
 
