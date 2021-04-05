@@ -97,9 +97,4 @@ class subnetCalculator(object):
 
 
 if __name__ == '__main__':
-    #prefix = input('Enter IP address in IP/Mask Form : ')
-    net = subnetCalculator()
-    net.toString()
-#   print('Hosts List : ' , net.Hosts())
-    print('Parent Network : ' , net.parentNetwork(prefixlenDiff=1))
-    print('Subnets Blocks : ' , net.subNetworks(newPrefix=21, subnetMask='255.255.192.0'))
+    exit('Direct access denied !')
