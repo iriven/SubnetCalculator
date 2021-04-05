@@ -10,8 +10,8 @@ Retrive informations about a given CIDR IP address
 from libraries.ipCalculator import subnetCalculator
 if __name__ == '__main__':
     IpPrefix = input('Enter IP address in IP/Mask Form : ')
-    net = subnetCalculator(IpPrefix)
-    net.toString()
+    netInfo = subnetCalculator(IpPrefix)
+    netInfo.toString()
     
 ```
 
