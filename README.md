@@ -21,7 +21,7 @@ A Python subnet calculator class using built-in ipaddress module
 
 ## Usage:
 
-Retrive informations about a given CIDR IP address
+Retrieve informations about a given CIDR IP address
 
 ``` python
 
