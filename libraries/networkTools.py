@@ -1,4 +1,5 @@
 from ipaddress import NetmaskValueError, AddressValueError
+from ipUtils import ipValidator
 import  ipaddress
 
 class subnetCalculator(object):
@@ -9,10 +10,39 @@ class subnetCalculator(object):
         except (AddressValueError, NetmaskValueError):
             raise ValueError('%r does not appear to be an IPv4 or IPv6 Nework address' % cidrAddress)
 
+    def __convertNetmaskToCidr(self, cidrOrNetmask):
+        if isinstance(cidrOrNetmask, int) and cidrOrNetmask in range(0,32):
+            return cidrOrNetmask
+        else:
+            objAddress = ipaddress.IPv4Network((0,cidrOrNetmask))
+            return objAddress.prefixlen
+
+
+    def __getMaxprefixLen(self, Address):
+        try:
+            objAddress = ipaddress.ip_interface(Address)
+            return objAddress.max_prefixlen
+        except (AddressValueError, NetmaskValueError):
+            raise ValueError('%r does not appear to be an IPv4 or IPv6 Nework address' % Address)
+
+    def isValidIPAddress(self, IP)->bool:
+        try:
+            objAddress= ipValidator(IP)
+            return objAddress.isValidIP()
+        except:
+            return False
+
+    def ReverseDNSRecord(self):
+        return str(self.__objAddress.reverse_pointer)
+
+
     def Broadcast(self):
         return self.__objAddress.network.broadcast_address
 
     def Cidr(self):
+        return '/' + str((self.__objAddress.with_prefixlen).split('/')[1])
+
+    def CidrNetwork(self):
         return str(self.__objAddress.network)
 
     def FirstAddress(self):
@@ -30,9 +60,6 @@ class subnetCalculator(object):
         NetAddr = self.__objAddress.network
         return list(NetAddr.hosts())[-1]
 
-    def Mask(self):
-        return '/' + str((self.__objAddress.with_prefixlen).split('/')[1])
-
     def Netmask(self):
         return (self.__objAddress.with_netmask).split('/')[1]
 
@@ -40,7 +67,7 @@ class subnetCalculator(object):
         return str(self.__objAddress.network).split('/')[0]
 
     def Range(self):
-        return '{}-{}'.format(self.FirstAddress(), self.LastAddress())
+        return '[{} - {}]'.format(self.FirstAddress(), self.LastAddress())
 
     def Size(self):
         return len(self.Hosts())
@@ -49,7 +76,7 @@ class subnetCalculator(object):
         ipn = ipaddress.ip_network(str(self.__objAddress.network))
         try:
             if isinstance(newPrefix, int) and newPrefix > 0 :
-                minPrefix = (int((self.Mask()).strip('/')) + 1)
+                minPrefix = (int((self.Cidr()).strip('/')) + 1)
                 if minPrefix > 31 or newPrefix not in range(minPrefix, 32, 1) :
                     raise ValueError('Invalid Subnet prefix given: %r' % newPrefix)
                 return list(ipn.subnets(new_prefix=newPrefix))
@@ -62,11 +89,11 @@ class subnetCalculator(object):
         except ValueError as e:
             raise
         return list(ipn.subnets())
-
+        
     def parentNetwork(self, newPrefix: int = 0, prefixlenDiff: int = 0):
         ipn = ipaddress.ip_network(str(self.__objAddress.network))
         try:
-            maxValue = (int((self.Mask()).strip('/')) - 1) 
+            maxValue = (int((self.Cidr()).strip('/')) - 1) 
             if isinstance(newPrefix, int) and newPrefix > 0 :
                 if maxValue < 1 or newPrefix not in range(1, maxValue, 1) :
                     raise ValueError('Invalid Subnet prefix given: %r' % newPrefix)
@@ -82,9 +109,9 @@ class subnetCalculator(object):
     def toString(self):
         print('Host Address : ', self.HostAddress())
         print('Network Address : ', self.NetworkAddress())
-        print('Subnet Mask : ', self.Netmask())
-        print('Mask : ', self.Mask())
-        print('CIDR Notation : ', self.Cidr())
+        print('Netmask : ', self.Netmask())
+        print('CIDR : ', self.Cidr())
+        print('CIDR Notation : ', self.CidrNetwork())
         print('Broadcast Address : ' , self.Broadcast())
         print('Wildcard Mask : ' , self.Wildcard())
         print('First IP : ' , self.FirstAddress())
