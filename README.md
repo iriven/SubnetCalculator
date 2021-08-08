@@ -27,9 +27,13 @@ Retrieve informations about a given CIDR IP address
 
 from libraries.networkTools import subnetCalculator
 if __name__ == '__main__':
-    IpPrefix = input('Enter IP address in IP/Mask Form : ')
-    netInfo = subnetCalculator(IpPrefix)
-    netInfo.toString()
+    prefix = input('Enter IP address in IP/Mask Form : ')
+#    exit('Direct access denied !')
+    net = subnetCalculator()
+    net.toString()
+#   print('Hosts List : ' , net.Hosts())
+    print('Parent Network : ' , net.parentNetwork(prefixlenDiff=1))
+    print('Subnets Blocks : ' , net.subNetworks(newPrefix=25))
     
 ```
 
