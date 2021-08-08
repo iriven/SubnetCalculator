@@ -29,7 +29,7 @@ from libraries.networkTools import subnetCalculator
 if __name__ == '__main__':
     prefix = input('Enter IP address in IP/Mask Form : ')
 #    exit('Direct access denied !')
-    net = subnetCalculator()
+    net = subnetCalculator(prefix)
     net.toString()
 #   print('Hosts List : ' , net.Hosts())
     print('Parent Network : ' , net.parentNetwork(prefixlenDiff=1))
