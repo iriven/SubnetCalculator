@@ -28,7 +28,6 @@ Retrieve informations about a given CIDR IP address
 from libraries.networkTools import subnetCalculator
 if __name__ == '__main__':
     prefix = input('Enter IP address in IP/Mask Form : ')
-#    exit('Direct access denied !')
     net = subnetCalculator(prefix)
     net.toString()
 #   print('Hosts List : ' , net.Hosts())
