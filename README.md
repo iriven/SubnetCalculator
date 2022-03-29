@@ -25,7 +25,7 @@ Retrieve informations about a given CIDR IP address
 
 ``` python
 
-from libraries.networkTools import subnetCalculator
+from libraries.tools import subnetCalculator
 if __name__ == '__main__':
     prefix = input('Enter IP address in IP/Mask Form : ')
     net = subnetCalculator(prefix)
